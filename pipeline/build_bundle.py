@@ -27,8 +27,10 @@ def main() -> int:
 
     prev = json.loads(BUNDLE.read_text()) if BUNDLE.exists() else {}
     version = prev.get("version", 0)
-    if prev.get("digest") != digest:
-        version += 1
+    if prev.get("digest") == digest:
+        print(f"bundle.json v{version} unchanged")
+        return 0
+    version += 1
 
     bundle = {
         "version": version,

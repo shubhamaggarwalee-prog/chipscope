@@ -9,9 +9,14 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: chipscope-weekly-data
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -29,6 +34,9 @@ jobs:
 
       - name: Rebuild app bundle
         run: python3 pipeline/build_bundle.py
+
+      - name: Validate dataset before committing
+        run: python3 pipeline/validate.py
 
       - name: Commit changes
         run: |

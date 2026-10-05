@@ -18,6 +18,7 @@ Everything is best-effort — a source failing never breaks the run.
 from __future__ import annotations
 
 import json
+import hashlib
 import re
 import sys
 import urllib.request
@@ -34,6 +35,7 @@ NEWS_FILE = DATA / "news.json"
 
 UA = {"User-Agent": "ChipScopeDiscovery/1.0 (+https://github.com/chipscope; contact: maintainer)"}
 TIMEOUT = 25
+FETCH_SUCCESSES = 0
 # Only pick up teardown coverage from roughly the last 4 months — older posts
 # are already in (or deliberately out of) the curated database.
 RECENCY_DAYS = 120
@@ -49,13 +51,16 @@ BLOG_LINK = re.compile(r"https://www\.techinsights\.com/blog/([a-z0-9\-]+)", re.
 
 
 def fetch(url: str) -> str | None:
+    global FETCH_SUCCESSES
     try:
         req = urllib.request.Request(url, headers=UA)
         with urllib.request.urlopen(req, timeout=TIMEOUT) as res:
             ctype = res.headers.get("Content-Type", "")
             if "text" not in ctype and "xml" not in ctype:
                 return None
-            return res.read().decode("utf-8", errors="replace")
+            text = res.read().decode("utf-8", errors="replace")
+            FETCH_SUCCESSES += 1
+            return text
     except Exception as e:  # best-effort: log and move on
         print(f"  ! fetch failed: {url} ({e})", file=sys.stderr)
         return None
@@ -150,6 +155,8 @@ def main() -> int:
     news: list[dict] = load_json(NEWS_FILE, [])
 
     candidates = ifixit_candidates() + techinsights_candidates(seen)
+    if not FETCH_SUCCESSES:
+        raise RuntimeError("All discovery sources are unavailable; not publishing an empty update.")
     print(f"Found {len(candidates)} teardown candidates.")
 
     today = date.today().isoformat()
@@ -170,7 +177,7 @@ def main() -> int:
         )
         news.append(
             {
-                "id": f"news-{c['slug'][:40]}",
+                "id": f"news-{c['slug'][:24]}-{hashlib.sha1(c['url'].encode()).hexdigest()[:8]}",
                 "date": today,
                 "title": c["title"],
                 "summary": f"New teardown coverage from {c['source']}: {c['title']}. Full component breakdown pending in the database.",
