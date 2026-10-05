@@ -1,0 +1,489 @@
+[
+  {
+    "id": "apple-a18-pro",
+    "name": "Apple A18 Pro",
+    "vendor": "Apple",
+    "kind": "Mobile SoC",
+    "processNode": "3nm (TSMC N3E)",
+    "foundry": "TSMC",
+    "year": 2024,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "6-core (2 performance + 4 efficiency)"
+      },
+      {
+        "label": "GPU",
+        "value": "6-core, hardware ray tracing"
+      },
+      {
+        "label": "NPU",
+        "value": "16-core Neural Engine, 35 TOPS"
+      },
+      {
+        "label": "Transistors",
+        "value": "20 billion"
+      }
+    ],
+    "usedIn": [
+      "iphone-16-pro-max"
+    ]
+  },
+  {
+    "id": "apple-a17-pro",
+    "name": "Apple A17 Pro",
+    "vendor": "Apple",
+    "kind": "Mobile SoC",
+    "processNode": "3nm (TSMC N3B)",
+    "foundry": "TSMC",
+    "year": 2023,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "6-core (2 performance + 4 efficiency)"
+      },
+      {
+        "label": "GPU",
+        "value": "6-core, hardware ray tracing"
+      },
+      {
+        "label": "NPU",
+        "value": "16-core Neural Engine, 35 TOPS"
+      },
+      {
+        "label": "Transistors",
+        "value": "19 billion"
+      }
+    ],
+    "usedIn": [
+      "iphone-15-pro"
+    ]
+  },
+  {
+    "id": "apple-a16",
+    "name": "Apple A16 Bionic",
+    "vendor": "Apple",
+    "kind": "Mobile SoC",
+    "processNode": "4nm (TSMC N4)",
+    "foundry": "TSMC",
+    "year": 2022,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "6-core (2 performance + 4 efficiency)"
+      },
+      {
+        "label": "GPU",
+        "value": "5-core"
+      },
+      {
+        "label": "NPU",
+        "value": "16-core Neural Engine, 17 TOPS"
+      },
+      {
+        "label": "Transistors",
+        "value": "16 billion"
+      }
+    ],
+    "usedIn": [
+      "iphone-14-pro"
+    ]
+  },
+  {
+    "id": "apple-m4",
+    "name": "Apple M4",
+    "vendor": "Apple",
+    "kind": "Laptop/Tablet SoC",
+    "processNode": "3nm (TSMC N3E)",
+    "foundry": "TSMC",
+    "year": 2024,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "Up to 10-core"
+      },
+      {
+        "label": "GPU",
+        "value": "Up to 10-core, ray tracing"
+      },
+      {
+        "label": "NPU",
+        "value": "16-core Neural Engine, 38 TOPS"
+      },
+      {
+        "label": "Memory",
+        "value": "Unified LPDDR5X, 120 GB/s"
+      }
+    ],
+    "usedIn": [
+      "macbook-pro-14-m4",
+      "ipad-pro-11-m4"
+    ]
+  },
+  {
+    "id": "apple-m2",
+    "name": "Apple M2",
+    "vendor": "Apple",
+    "kind": "Laptop/Headset SoC",
+    "processNode": "5nm (TSMC N5P)",
+    "foundry": "TSMC",
+    "year": 2022,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "8-core"
+      },
+      {
+        "label": "GPU",
+        "value": "Up to 10-core"
+      },
+      {
+        "label": "NPU",
+        "value": "16-core Neural Engine, 15.8 TOPS"
+      }
+    ],
+    "usedIn": [
+      "vision-pro"
+    ]
+  },
+  {
+    "id": "apple-h2",
+    "name": "Apple H2",
+    "vendor": "Apple",
+    "kind": "Audio SoC",
+    "year": 2022,
+    "specs": [
+      {
+        "label": "Function",
+        "value": "Computational audio, ANC"
+      },
+      {
+        "label": "ANC",
+        "value": "Up to 2x vs H1"
+      },
+      {
+        "label": "Wireless",
+        "value": "Bluetooth 5.3"
+      }
+    ],
+    "usedIn": [
+      "airpods-pro-2"
+    ]
+  },
+  {
+    "id": "tensor-g4",
+    "name": "Google Tensor G4",
+    "vendor": "Google / Samsung SLSI",
+    "kind": "Mobile SoC",
+    "processNode": "4nm (Samsung 4LPP)",
+    "foundry": "Samsung",
+    "year": 2024,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "Octa-core (1x Cortex-X4 + 3x A720 + 4x A520)"
+      },
+      {
+        "label": "NPU",
+        "value": "Edge TPU for on-device Gemini"
+      },
+      {
+        "label": "Modem",
+        "value": "Paired with Exynos Modem 5400"
+      }
+    ],
+    "usedIn": [
+      "pixel-9-pro-xl"
+    ]
+  },
+  {
+    "id": "tensor-g3",
+    "name": "Google Tensor G3",
+    "vendor": "Google / Samsung SLSI",
+    "kind": "Mobile SoC",
+    "processNode": "4nm (Samsung 4LPP)",
+    "foundry": "Samsung",
+    "year": 2023,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "Nona-core (1x Cortex-X3 + 4x A715 + 4x A510)"
+      },
+      {
+        "label": "GPU",
+        "value": "Arm Immortalis-G715"
+      },
+      {
+        "label": "BoM cost",
+        "value": "~$105.62 (TechInsights)"
+      }
+    ],
+    "usedIn": [
+      "pixel-8-pro"
+    ]
+  },
+  {
+    "id": "snapdragon-8-elite",
+    "name": "Snapdragon 8 Elite",
+    "vendor": "Qualcomm",
+    "kind": "Mobile SoC",
+    "processNode": "3nm (TSMC N3E)",
+    "foundry": "TSMC",
+    "year": 2024,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "2nd-gen Oryon, up to 4.47 GHz (\"for Galaxy\")"
+      },
+      {
+        "label": "GPU",
+        "value": "Adreno 830"
+      },
+      {
+        "label": "NPU",
+        "value": "Hexagon, 45 TOPS"
+      },
+      {
+        "label": "Modem",
+        "value": "Snapdragon X80 5G integrated"
+      }
+    ],
+    "usedIn": [
+      "galaxy-s25-ultra"
+    ]
+  },
+  {
+    "id": "snapdragon-8-gen-3",
+    "name": "Snapdragon 8 Gen 3",
+    "vendor": "Qualcomm",
+    "kind": "Mobile SoC",
+    "processNode": "4nm (TSMC N4P)",
+    "foundry": "TSMC",
+    "year": 2023,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "1x Cortex-X4 @ 3.3 GHz + 5x A720 + 2x A520"
+      },
+      {
+        "label": "GPU",
+        "value": "Adreno 750"
+      },
+      {
+        "label": "NPU",
+        "value": "Hexagon"
+      },
+      {
+        "label": "Modem",
+        "value": "Snapdragon X75 5G integrated"
+      }
+    ],
+    "usedIn": [
+      "galaxy-s24-ultra"
+    ]
+  },
+  {
+    "id": "qualcomm-sdx71m",
+    "name": "Qualcomm SDX71M",
+    "vendor": "Qualcomm",
+    "kind": "5G Modem",
+    "year": 2024,
+    "specs": [
+      {
+        "label": "Base",
+        "value": "Custom variant of the SDX70M platform"
+      },
+      {
+        "label": "Note",
+        "value": "Found in iPhone 16 Pro — not the X75 as rumored"
+      }
+    ],
+    "usedIn": [
+      "iphone-16-pro-max"
+    ]
+  },
+  {
+    "id": "qualcomm-x70",
+    "name": "Snapdragon X70",
+    "vendor": "Qualcomm",
+    "kind": "5G Modem",
+    "processNode": "4nm",
+    "foundry": "TSMC",
+    "year": 2022,
+    "specs": [
+      {
+        "label": "Peak downlink",
+        "value": "10 Gbps"
+      },
+      {
+        "label": "Feature",
+        "value": "Integrated AI processor for link optimization"
+      }
+    ],
+    "usedIn": [
+      "iphone-15-pro"
+    ]
+  },
+  {
+    "id": "qualcomm-x65",
+    "name": "Snapdragon X65",
+    "vendor": "Qualcomm",
+    "kind": "5G Modem",
+    "processNode": "4nm",
+    "foundry": "TSMC",
+    "year": 2021,
+    "specs": [
+      {
+        "label": "Peak downlink",
+        "value": "10 Gbps"
+      }
+    ],
+    "usedIn": [
+      "iphone-14-pro"
+    ]
+  },
+  {
+    "id": "kirin-9000s",
+    "name": "Kirin 9000S",
+    "vendor": "HiSilicon",
+    "kind": "Mobile SoC",
+    "processNode": "7nm-class (SMIC N+2)",
+    "foundry": "SMIC",
+    "year": 2023,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "Octa-core (1x Taishan Big + 3x Taishan Mid + 4x Cortex-A510)"
+      },
+      {
+        "label": "Significance",
+        "value": "First SMIC 7nm phone SoC — made in China under sanctions"
+      }
+    ],
+    "usedIn": [
+      "huawei-mate-60-pro"
+    ]
+  },
+  {
+    "id": "kirin-9010",
+    "name": "Kirin 9010",
+    "vendor": "HiSilicon",
+    "kind": "Mobile SoC",
+    "processNode": "7nm (SMIC)",
+    "foundry": "SMIC",
+    "year": 2024,
+    "specs": [
+      {
+        "label": "Die size",
+        "value": "118.4 mm² (vs 107.8 mm² for TSMC 5nm Kirin 9000)"
+      },
+      {
+        "label": "Assessment",
+        "value": "SMIC ~3 years behind TSMC (TechanaLye)"
+      }
+    ],
+    "usedIn": [
+      "huawei-pura-70-pro"
+    ]
+  },
+  {
+    "id": "amd-oberon",
+    "name": "AMD Oberon (CXD90060GG)",
+    "vendor": "AMD / Sony",
+    "kind": "Console APU",
+    "processNode": "7nm (TSMC)",
+    "foundry": "TSMC",
+    "year": 2020,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "8x Zen 2 @ up to 3.5 GHz"
+      },
+      {
+        "label": "GPU",
+        "value": "36 CU RDNA 2 @ up to 2.23 GHz, 10.28 TFLOPS"
+      }
+    ],
+    "usedIn": [
+      "playstation-5"
+    ]
+  },
+  {
+    "id": "amd-sephiroth",
+    "name": "AMD Sephiroth",
+    "vendor": "AMD",
+    "kind": "Handheld APU",
+    "processNode": "6nm (TSMC)",
+    "foundry": "TSMC",
+    "year": 2023,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "4x Zen 2 @ 2.4–3.5 GHz"
+      },
+      {
+        "label": "GPU",
+        "value": "8 CU RDNA 2 @ 1.6 GHz"
+      },
+      {
+        "label": "Note",
+        "value": "6nm die shrink of the original Van Gogh APU"
+      }
+    ],
+    "usedIn": [
+      "steam-deck-oled"
+    ]
+  },
+  {
+    "id": "tegra-x1",
+    "name": "Nvidia Tegra X1 (Mariko)",
+    "vendor": "Nvidia",
+    "kind": "Mobile SoC",
+    "processNode": "16nm (TSMC)",
+    "foundry": "TSMC",
+    "year": 2019,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "4x Cortex-A57"
+      },
+      {
+        "label": "GPU",
+        "value": "256-core Maxwell"
+      },
+      {
+        "label": "Note",
+        "value": "Mariko (T214) is the 16nm revision of the 20nm Erista"
+      }
+    ],
+    "usedIn": [
+      "switch-oled"
+    ]
+  },
+  {
+    "id": "bcm2712",
+    "name": "Broadcom BCM2712",
+    "vendor": "Broadcom",
+    "kind": "SBC SoC",
+    "processNode": "16nm (TSMC)",
+    "foundry": "TSMC",
+    "year": 2023,
+    "specs": [
+      {
+        "label": "CPU",
+        "value": "4x Cortex-A76 @ 2.4 GHz"
+      },
+      {
+        "label": "GPU",
+        "value": "VideoCore VII"
+      },
+      {
+        "label": "Companion",
+        "value": "RP1 southbridge (Raspberry Pi-designed)"
+      }
+    ],
+    "usedIn": [
+      "raspberry-pi-5"
+    ]
+  }
+]

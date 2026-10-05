@@ -1,0 +1,32 @@
+[
+  {
+    "id": "q-0001",
+    "status": "pending",
+    "discovered": "2026-10-04",
+    "source": "ifixit",
+    "url": "https://www.ifixit.com/News/119488/steam-frame-teardown-were-fans-except-of-the-fan",
+    "title": "Steam frame teardown were fans except of the fan",
+    "slug": "steam-frame-teardown-were-fans-except-of-the-fan",
+    "note": "Research BoM from the linked teardown, then move to devices.json."
+  },
+  {
+    "id": "q-0002",
+    "status": "pending",
+    "discovered": "2026-10-04",
+    "source": "ifixit",
+    "url": "https://www.ifixit.com/News/119329/inside-the-tiny-unfixable-eye-iphone-18-pro-and-pro-max-teardown",
+    "title": "Inside the tiny unfixable eye iphone 18 pro and pro max teardown",
+    "slug": "inside-the-tiny-unfixable-eye-iphone-18-pro-and-pro-max-teardown",
+    "note": "Research BoM from the linked teardown, then move to devices.json."
+  },
+  {
+    "id": "q-0003",
+    "status": "pending",
+    "discovered": "2026-10-04",
+    "source": "ifixit",
+    "url": "https://www.ifixit.com/News/118647/galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem",
+    "title": "Galaxy z fold8 teardown samsungs best foldable still has a hinge problem",
+    "slug": "galaxy-z-fold8-teardown-samsungs-best-foldable-still-has-a-hinge-problem",
+    "note": "Research BoM from the linked teardown, then move to devices.json."
+  }
+]
