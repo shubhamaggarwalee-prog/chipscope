@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+paths:
+  /chipscope/bundle:
+    get:
+      operationId: getChipScopeBundle
+      tags: [chipscope]
+      summary: Latest public teardown dataset from the private source repository
+      responses:
+        "200":
+          description: Validated dataset
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ChipScopeBundle" }
+        "503":
+          description: Dataset temporarily unavailable
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiProblem" }
+  /chipscope/ask:
+    post:
+      operationId: askChipScopeQuestion
+      tags: [chipscope]
+      summary: Free grounded AI answers with server-side credentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/ChipScopeQuestionInput" }
+      responses:
+        "200":
+          description: Grounded answer
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ChipScopeAnswer" }
+        "400":
+          description: Invalid question
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiProblem" }
+        "429":
+          description: Daily usage limit reached
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiProblem" }
+        "503":
+          description: AI temporarily unavailable
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ApiProblem" }
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+components:
+  schemas:
+    ApiProblem:
+      type: object
+      required: [message]
+      properties:
+        message: { type: string }
+    ChipScopeQuestionInput:
+      type: object
+      required: [question]
+      properties:
+        question: { type: string, minLength: 3, maxLength: 1000 }
+    ChipScopeAnswer:
+      type: object
+      required: [answer, citations]
+      properties:
+        answer: { type: string }
+        citations: { type: array, items: { type: string } }
+    ChipScopeLabelValue:
+      type: object
+      required: [label, value]
+      properties:
+        label: { type: string }
+        value: { type: string }
+    ChipScopeSource:
+      type: object
+      required: [label]
+      properties:
+        label: { type: string }
+        url: { type: string }
+    ChipScopeComponent:
+      type: object
+      required: [category, name, vendor, confidence]
+      properties:
+        category: { type: string }
+        name: { type: string }
+        vendor: { type: string }
+        detail: { type: string }
+        chipId: { type: string }
+        confidence: { type: string, enum: [verified, reported] }
+    ChipScopeDevice:
+      type: object
+      required: [id, name, brand, category, year, tagline, highlights, components, sources]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        brand: { type: string }
+        category: { type: string, enum: [Phone, Laptop, Tablet, Wearable, Audio, Console, Board, Headset] }
+        year: { type: integer }
+        tagline: { type: string }
+        repairability: { type: string }
+        highlights: { type: array, items: { $ref: "#/components/schemas/ChipScopeLabelValue" } }
+        components: { type: array, items: { $ref: "#/components/schemas/ChipScopeComponent" } }
+        sources: { type: array, items: { $ref: "#/components/schemas/ChipScopeSource" } }
+    ChipScopeChip:
+      type: object
+      required: [id, name, vendor, kind, specs, usedIn]
+      properties:
+        id: { type: string }
+        name: { type: string }
+        vendor: { type: string }
+        kind: { type: string }
+        processNode: { type: string }
+        foundry: { type: string }
+        year: { type: integer }
+        infoUrl: { type: string }
+        specs: { type: array, items: { $ref: "#/components/schemas/ChipScopeLabelValue" } }
+        usedIn: { type: array, items: { type: string } }
+    ChipScopeNews:
+      type: object
+      required: [id, date, title, summary, source, url]
+      properties:
+        id: { type: string }
+        date: { type: string }
+        title: { type: string }
+        summary: { type: string }
+        source: { type: string }
+        url: { type: string }
+    ChipScopeBundle:
+      type: object
+      required: [version, updatedAt, devices, chips, news]
+      properties:
+        version: { type: integer, minimum: 1 }
+        updatedAt: { type: string }
+        digest: { type: string }
+        devices: { type: array, items: { $ref: "#/components/schemas/ChipScopeDevice" } }
+        chips: { type: array, items: { $ref: "#/components/schemas/ChipScopeChip" } }
+        news: { type: array, items: { $ref: "#/components/schemas/ChipScopeNews" } }
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+

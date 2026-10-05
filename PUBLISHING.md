@@ -1,53 +1,19 @@
 # Publishing ChipScope
 
-## 1. Accounts (on you — ~15 minutes)
+Publish the backend and configure a permanent public origin before releasing the mobile app. The current backend's private GitHub connector requires the connected Replit environment; independent hosting configuration is separate work.
 
-- **Apple Developer Program** — $99 USD/year, enroll at developer.apple.com with your Apple ID.
-- **Google Play** — $25 USD one-time, at play.google.com/console.
+Run EAS commands from `apps/mobile/` after a root `pnpm install --frozen-lockfile`. Set unique `ios.bundleIdentifier` and `android.package` values in `app.json`, initialize your EAS project, and configure the non-secret `EXPO_PUBLIC_API_URL` for each build environment. Do not append /api to that origin.
 
-## 2. App identity (already configured, change anytime)
-
-`app.json`: name **ChipScope**, slug/scheme `chipscope`, bundle ids to set below. Replace
-`assets/icon.png` with your own 1024×1024 icon before submitting (current one is a placeholder).
-
-## 3. EAS — cloud builds, no Mac needed
-
-```bash
-npm install -g eas-cli
-eas login
-eas init            # creates the project, writes projectId into app.json
+```sh
+cd apps/mobile
+pnpm dlx eas-cli login
+pnpm dlx eas-cli init
+pnpm dlx eas-cli build --platform ios --profile production
+pnpm dlx eas-cli build --platform android --profile production
 ```
 
-Set bundle identifiers (must be unique, e.g. `com.yourname.chipscope`):
+Apple and Google developer accounts, store listing assets, privacy disclosures and signing setup are required. Validate icons and screenshots before submission.
 
-```bash
-# in app.json → ios.bundleIdentifier and android.package
-```
+The app does not store the owner's OpenAI key in the OS keychain or bundle. That key and quota salt stay in server Secrets; GitHub credentials stay in the server-side connector. Document AI processing and daily quota storage in the privacy policy. The API distributes the validated dataset from the private repository, not a public raw GitHub URL.
 
-Then build:
-
-```bash
-eas build --platform ios --profile production      # → .ipa
-eas build --platform android --profile production  # → .aab
-```
-
-`eas.json` in this repo already defines `development`, `preview`, and `production` profiles.
-
-## 4. Submit
-
-```bash
-eas submit --platform ios       # needs your Apple Developer API key (EAS guides you)
-eas submit --platform android    # needs a Google Play service-account JSON
-```
-
-## 5. After launch
-
-- **Data updates** flow through `data/bundle.json` — no rebuild needed.
-- **Code updates** can ship over-the-air: `eas update --auto` (configure a channel first).
-
-## Checklist before first submission
-
-- [ ] Real 1024×1024 icon + splash in `assets/`
-- [ ] `REMOTE_BUNDLE_URL` in `src/lib/store.ts` points at your repo
-- [ ] Privacy policy URL (free generators exist; required by both stores — the app stores the OpenAI key in the OS keychain and fetches the public data bundle)
-- [ ] Screenshots for both stores (Expo Go on your phone works fine)
+Before release: verify online data refresh, offline fallback, AI answers and quota behavior against the published backend. This source synchronization does not publish the app or backend.

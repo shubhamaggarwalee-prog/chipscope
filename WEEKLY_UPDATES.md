@@ -46,5 +46,7 @@ For a production release, publish the backend and configure the mobile build's
 public `EXPO_PUBLIC_API_URL` with its permanent origin. Never use an OpenAI key in
 an `EXPO_PUBLIC_*` variable.
 
-The GitHub repository began as a standalone snapshot of the supplied mobile app;
-it is not automatically synchronized with later Replit runtime changes.
+This repository now includes the current mobile app, backend and shared libraries.
+It is a verified source snapshot, not automatic synchronization with Replit.
+The workflow and canonical data stay at the repository root; apps/mobile/data is
+an offline bootstrap snapshot refreshed deliberately for future app releases.

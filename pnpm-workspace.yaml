@@ -1,0 +1,21 @@
+minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - '@replit/*'
+packages:
+  - apps/*
+  - lib/*
+catalog:
+  '@tanstack/react-query': ^5.90.21
+  '@types/node': ^25.3.3
+  drizzle-orm: ^0.45.2
+  zod: ^3.25.76
+autoInstallPeers: false
+onlyBuiltDependencies:
+  - '@swc/core'
+  - esbuild
+  - msw
+  - unrs-resolver
+overrides:
+  '@esbuild-kit/esm-loader': 'npm:tsx@^4.21.0'
+  esbuild: '0.28.2'
+  js-yaml: '4.3.2'
