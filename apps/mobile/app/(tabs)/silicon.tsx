@@ -84,8 +84,8 @@ export default function Silicon() {
         <Card>
           <H1>Silicon landscape</H1>
           <Body style={{ marginTop: 6 }}>
-            Every chip in the database, grouped by who fabricates it and on what process node —
-            the foundry view the industry pays TechInsights thousands for.
+            Chip profiles grouped by who fabricates them and on what process node.
+            These totals describe ChipScope’s curated sample, not worldwide market share.
           </Body>
           <View style={styles.stats}>
             <View style={styles.stat}>
@@ -94,13 +94,14 @@ export default function Silicon() {
             </View>
             <View style={styles.stat}>
               <Text style={styles.statNum}>{tsmcShare}%</Text>
-              <Muted>made by TSMC</Muted>
+              <Muted>TSMC in sample</Muted>
             </View>
             <View style={styles.stat}>
               <Text style={styles.statNum}>{byNode.length}</Text>
               <Muted>process nodes</Muted>
             </View>
           </View>
+          <Muted style={{ marginTop: 8 }}>The TSMC percentage includes only tracked chips with a known foundry.</Muted>
         </Card>
 
         <Card>
@@ -118,7 +119,7 @@ export default function Silicon() {
 
         <Card>
           <H2>By process node</H2>
-          <Muted style={{ marginBottom: 8 }}>Smaller is more advanced. Leading edge today: 3nm.</Muted>
+          <Muted style={{ marginBottom: 8 }}>Nodes recorded in this dataset — not a live technology leaderboard.</Muted>
           {byNode.map(([node, chips]) => (
             <Section
               key={node}

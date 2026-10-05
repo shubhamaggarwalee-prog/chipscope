@@ -1,13 +1,22 @@
 import { Tabs } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { T } from '@/ui';
 
 export default function TabsLayout() {
+  const { bottom } = useSafeAreaInsets();
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: T.accent,
         tabBarInactiveTintColor: T.muted,
+        tabBarStyle: {
+          height: 74 + bottom,
+          paddingTop: 6,
+          paddingBottom: Math.max(bottom, 20),
+          backgroundColor: T.card,
+        },
+        tabBarLabelStyle: { fontSize: 10, lineHeight: 12 },
         headerStyle: { backgroundColor: T.card },
         headerTitleStyle: { fontWeight: '800' },
       }}
@@ -18,6 +27,13 @@ export default function TabsLayout() {
           title: 'Discover',
           headerTitle: 'ChipScope',
           tabBarIcon: ({ color, size }) => <Ionicons name="hardware-chip-outline" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="today"
+        options={{
+          title: 'Today',
+          tabBarIcon: ({ color, size }) => <Ionicons name="calendar-outline" color={color} size={size} />,
         }}
       />
       <Tabs.Screen

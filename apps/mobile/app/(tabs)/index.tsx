@@ -11,6 +11,8 @@ import {
 import { Link, useFocusEffect } from 'expo-router';
 import { Screen, Card, H2, Body, Muted, T } from '@/ui';
 import { useBundle, refreshFromRemote, searchAll } from '@/lib/store';
+import { getDailyFact } from '@/content/learning';
+import { useLocalDay } from '@/lib/useLocalDay';
 import { getFavorites } from '@/lib/favorites';
 import type { Device, DeviceCategory, NewsItem } from '@/types';
 
@@ -46,19 +48,25 @@ function DeviceRow({ device }: { device: Device }) {
 }
 
 function NewsCard({ item }: { item: NewsItem }) {
+  const [linkError, setLinkError] = useState(false);
   return (
-    <Pressable onPress={() => Linking.openURL(item.url).catch(() => {})}>
+    <Pressable onPress={() => {
+      setLinkError(false);
+      Linking.openURL(item.url).catch(() => setLinkError(true));
+    }}>
       <Card>
         <Muted>{item.date} · {item.source}</Muted>
         <H2 style={{ marginTop: 4 }}>{item.title}</H2>
         <Body>{item.summary}</Body>
         <Muted style={{ marginTop: 6, color: T.accent }}>Read source ↗</Muted>
+        {linkError ? <Muted>Could not open the source. Please try again.</Muted> : null}
       </Card>
     </Pressable>
   );
 }
 
 export default function Discover() {
+  const today = useLocalDay();
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState<(typeof CATEGORIES)[number]>('All');
   const [refreshState, setRefreshState] = useState<'idle' | 'updated' | 'unavailable'>('idle');
@@ -106,6 +114,7 @@ export default function Discover() {
                 autoCapitalize="none"
               />
             </View>
+            <TodayPreview />
             {query.trim() ? (
               <ChipResults query={query} />
             ) : null}
@@ -138,7 +147,7 @@ export default function Discover() {
           !query ? (
             <View>
               <H2 style={styles.sectionTitle}>Industry news</H2>
-              {bundle.news.map((n) => (
+              {bundle.news.filter((n) => n.date <= today).sort((a, b) => b.date.localeCompare(a.date)).map((n) => (
                 <NewsCard key={n.id} item={n} />
               ))}
               <View style={{ height: 24 }} />
@@ -153,6 +162,22 @@ export default function Discover() {
         }
       />
     </Screen>
+  );
+}
+
+function TodayPreview() {
+  const fact = getDailyFact(useLocalDay());
+  return (
+    <Link href="/today" asChild>
+      <Pressable>
+        <Card style={{ borderColor: T.accent }}>
+          <Muted style={{ color: T.accent, fontWeight: '800' }}>TODAY · {fact.year}</Muted>
+          <H2 style={{ marginTop: 4 }}>{fact.title}</H2>
+          <Muted numberOfLines={2}>{fact.body}</Muted>
+          <Muted style={{ marginTop: 6, color: T.accent }}>Open daily fact and quiz</Muted>
+        </Card>
+      </Pressable>
+    </Link>
   );
 }
 
